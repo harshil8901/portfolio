@@ -1,31 +1,27 @@
 import React from "react";
-import {
-  Container,
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  Divider,
-  useMediaQuery,
-} from "@mui/material";
+import { Container, Typography, Box, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 const experiences = [
   {
-    year: "2021",
-    title: "Senior Python Developer",
-    company: "Scottech, Toledo",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. 
-    Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. 
-    Maecenas eget condimentum velit, sit amet feugiat lectus.`,
+    year: "May 2024-June 2024",
+    title: " Web Developer",
+    company: "Tata Power DDL ,Internship - Hybrid",
+    description: `Led the development of an Employee Task Management Dashboard using React and Material-UI. Created interfaces for task monitoring, completion updates, and commenting. Integrated task filtering and secure user login. Improved usability and security, advancing my skills in web application development.`,
   },
+
   {
-    year: "2021",
-    title: "Python Developer",
-    company: "AutoGrid Systems, Naperville",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. 
-    Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. 
-    Maecenas eget condimentum velit, sit amet feugiat lectus.`,
+    year: "June 2023-July 2023",
+    title: " Web Developer",
+    company: "Solitaire Infosys,Internship - Remote",
+    description: `Led five projects using React and JavaScript. Increased project efficiency by 20% and reduced response times by 30%. Achieved a 25% rise in client satisfaction ratings and frequently completed projects ahead of schedule.`,
+  },
+
+  {
+    year: "May 2023-June 2023",
+    title: "Web Developer",
+    company: "Psychogems, Freelance - Remote",
+    description: `Developed a client-centric website for a psychology therapist using React. Achieved a 40% increase in user engagement and a 25% rise in appointment bookings within three months. Enhanced responsiveness and service quality, leading to a 20% increase in client satisfaction.`,
   },
   // Add more experiences as needed
 ];
@@ -38,117 +34,79 @@ const Experience = () => {
     <Box
       id="experience"
       sx={{
-        padding: { xs: "30px 0", md: "50px 0" },
+        padding: { xs: "20px 0", md: "20px 0" }, // Adjusted padding to reduce top and bottom spacing
         backgroundColor: theme.palette.background.default,
         position: "relative",
+        "::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "20px",
+          boxShadow: "0 -20px 20px -20px black",
+        },
+        "::after": {
+          content: '""',
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "20px",
+          boxShadow: "0 20px 20px -20px black",
+        },
       }}
     >
       <Container>
         <Box
           sx={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "40px",
+            flexDirection: isDesktop ? "row" : "column",
+            alignItems: isDesktop ? "flex-start" : "center",
+            position: "relative",
+            margin: "0 auto", // Center the box horizontally
+            padding: isDesktop ? "20px 0" : "20px 0", // Equal padding for top and bottom
           }}
         >
-          <Divider
+          <Typography
+            variant="h4"
             sx={{
-              bgcolor: theme.palette.primary.main,
-              height: "2px",
-              width: "50px",
-              marginRight: "8px",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              color: theme.palette.text.primary,
+              marginBottom: isDesktop ? "0" : "20px",
+              writingMode: isDesktop ? "vertical-rl" : "horizontal-tb",
+              textOrientation: isDesktop ? "upright" : "initial",
             }}
-          />
-          <Typography variant="h4" style={{ color: theme.palette.primary.main }}>
+          >
             Experience
           </Typography>
-          <Divider
+          <Box
             sx={{
-              bgcolor: theme.palette.primary.main,
-              height: "2px",
-              width: "50px",
-              marginLeft: "8px",
+              backgroundColor: theme.palette.background.default,
+              padding: "0 20px", // Reduced padding to remove extra spacing
+              position: "relative",
+              borderRadius: "20px",
+              overflow: "hidden",
+              flex: 1,
+              boxShadow: "none",
+              marginLeft: isDesktop ? "20px" : "0", // Adjust margin for desktop
             }}
-          />
-        </Box>
-        <Card
-          sx={{
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
-            padding: isDesktop ? "70px" : "20px", // Adjusted padding for mobile
-            position: "relative",
-            borderRadius: "20px",
-            overflow: "hidden", // Ensures the pseudo element stays within the card
-          }}
-        >
-          <CardContent>
+          >
             {experiences.map((exp, index) => (
               <Box
                 key={index}
                 sx={{
                   display: "flex",
-                  flexDirection: isDesktop ? "row" : "column",
-                  alignItems: isDesktop ? "center" : "flex-start",
-                  position: "relative",
-                  marginBottom:
-                    index < experiences.length ? (isDesktop ? "40px" : "20px") : 0,
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  marginBottom: index < experiences.length - 1 ? "30px" : 0, // Increased bottom margin
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: isDesktop ? "center" : "flex-start",
-                    position: "relative",
-                    minWidth: "50px",
-                    zIndex: 1,
-                    marginBottom: isDesktop ? "0" : "10px", // Adjusted for mobile
-                    textAlign: "left", // Adjusted for mobile
-                  }}
-                >
-                  <Typography
-                    variant="subtitle1"
-                    color="text.secondary"
-                    sx={{
-                      marginBottom: "3px",
-                      position: isDesktop ? "absolute" : "relative",
-                      left: isDesktop ? "-30px" : "0", // Adjusted for mobile
-                      bottom: isDesktop ? "auto" : "0", // Adjusted for mobile
-                      top: isDesktop ? "auto" : "0", // Adjusted for mobile
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {exp.year}
-                  </Typography>
-                  {isDesktop && (
-                    <Box
-                      sx={{
-                        width: "12px",
-                        height: "12px",
-                        backgroundColor: theme.palette.primary.main,
-                        borderRadius: "50%",
-                        boxShadow: `0 0 10px ${theme.palette.primary.main}`,
-                        zIndex: 2,
-                        position: "relative",
-                      }}
-                    />
-                  )}
-                  {isDesktop && index < experiences.length  && (
-                    <Box
-                      sx={{
-                        position: "absolute",
-                        top: "12px",
-                        left: "23.5px",
-                        width: "2px",
-                        height: "calc(100% + 100px)",
-                        backgroundColor: theme.palette.primary.main,
-                        zIndex: 0,
-                      }}
-                    />
-                  )}
-                </Box>
-                <Box sx={{ marginLeft: isDesktop ? "20px" : 0 }}>
+                <Typography variant="subtitle1" color="text.secondary">
+                  {exp.year}
+                </Typography>
+                <Box sx={{ marginLeft: "0", textAlign: "left" }}>
                   <Typography variant="h6">{exp.title}</Typography>
                   <Typography variant="subtitle2" color="text.secondary">
                     {exp.company}
@@ -159,8 +117,8 @@ const Experience = () => {
                 </Box>
               </Box>
             ))}
-          </CardContent>
-        </Card>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );

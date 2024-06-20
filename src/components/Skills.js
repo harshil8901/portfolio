@@ -3,11 +3,9 @@ import {
   Container,
   Grid,
   Card,
-  CardContent,
-  Typography,
   Box,
-  Divider,
-  useMediaQuery
+  useMediaQuery,
+  Typography
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
@@ -42,7 +40,7 @@ const skills = [
 
 const Skills = () => {
   const theme = useTheme();
-  const isLessThanDesktop = useMediaQuery(theme.breakpoints.down('md')); // Check if screen size is less than desktop
+  const isLessThanDesktop = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box
@@ -52,33 +50,23 @@ const Skills = () => {
         backgroundColor: theme.palette.background.default,
         position: "relative",
         color: theme.palette.text.primary,
-        "::before": {
+        // Background grid lines (light grey)
+        backgroundImage: `
+          linear-gradient(to bottom, rgba(55,51,51,0.6) 1px, transparent 2px),
+          linear-gradient(to right, rgba(55,51,51,0.6) 1px, transparent 2px)
+        `,
+        backgroundSize: "40px 40px", // Larger grid size
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed", // Fixed background for better grid visibility
+        "&::after": {
           content: '""',
           position: "absolute",
-          width: "8px",
-          height: "8px",
-          backgroundColor: theme.palette.primary.main,
-          borderRadius: "50%",
-          right: isLessThanDesktop ? "auto" : "30px",
-          top: isLessThanDesktop ? "auto" : "40%",
-          bottom: isLessThanDesktop ? "-10px" : "auto",
-          boxShadow: isLessThanDesktop
-            ? "none"
-            : `0 25px 0 ${theme.palette.primary.main}, 0 50px 0 ${theme.palette.primary.main}, 0 75px 0 ${theme.palette.primary.main}, 0 100px 0 ${theme.palette.primary.main}`,
-        },
-        "::after": {
-          content: '""',
-          position: "absolute",
-          width: "8px",
-          height: "8px",
-          backgroundColor: theme.palette.primary.main,
-          borderRadius: "50%",
-          right: isLessThanDesktop ? "auto" : "10px",
-          top: isLessThanDesktop ? "auto" : "45%",
-          bottom: isLessThanDesktop ? "-10px" : "auto",
-          boxShadow: isLessThanDesktop
-            ? "none"
-            : `0 25px 0 ${theme.palette.primary.main}, 0 50px 0 ${theme.palette.primary.main}, 0 75px 0 ${theme.palette.primary.main}, 0 100px 0 ${theme.palette.primary.main}`,
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -1,
+          backgroundColor: theme.palette.background.default,
         },
       }}
     >
@@ -91,62 +79,43 @@ const Skills = () => {
             marginBottom: "40px",
           }}
         >
-          <Divider
-            sx={{
-              bgcolor: theme.palette.primary.main,
-              height: "2px",
-              width: "50px",
-              marginRight: "8px",
-            }}
-          />
-          <Typography variant="h4" style={{ color: theme.palette.primary.main }}>
-            Skills
+          <Typography variant="h4" style={{ textTransform: 'uppercase', fontWeight: 'bold', color: theme.palette.common.white }}>
+            Skills {/* Skills heading in uppercase */}
           </Typography>
-          <Divider
-            sx={{
-              bgcolor: theme.palette.primary.main,
-              height: "2px",
-              width: "50px",
-              marginLeft: "8px",
-            }}
-          />
         </Box>
-        <Grid container spacing={2}>
-          {skills.map((skill, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card
-                sx={{
-                  backgroundColor: theme.palette.background.paper,
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
-                  borderRadius: "20px",
-                  height: "150px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "10px",
-                }}
-              >
-                <CardContent
+        <Grid container justifyContent="center">
+          <Grid item xs={12}>
+            <Card
+              sx={{
+                backgroundColor: theme.palette.background.paper,
+                boxShadow: "0 5px 30px rgba(255,255,255,0.3)", // White shadow
+                borderRadius: "20px",
+                padding: "20px",
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: isLessThanDesktop ? "30px" : "40px", // Increased gap between logos
+                width: isLessThanDesktop ? "100%" : "50%", // Adjust width for different screens
+                margin: "auto", // Center the card horizontally
+              }}
+            >
+              {skills.map((skill, index) => (
+                <Box
+                  key={index}
                   sx={{
                     display: "flex",
-                    flexDirection: "column",
+                    justifyContent: "center",
                     alignItems: "center",
+                    width: "50px", // Adjust logo size
+                    height: "50px", // Adjust logo size
                   }}
                 >
-                  <skill.icon
-                    style={{ width: "50px", height: "50px", marginBottom: "10px" }}
-                  />
-                  <Typography
-                    variant="subtitle1"
-                    style={{ color: theme.palette.text.primary, textAlign: "center" }}
-                  >
-                    {skill.name}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
+                  <skill.icon style={{ width: "100%", height: "100%" }} />
+                </Box>
+              ))}
+            </Card>
+          </Grid>
         </Grid>
       </Container>
     </Box>
