@@ -53,7 +53,7 @@ const projects = [
     description:
       "Developed a task assignment application to manage and assign tasks effectively within a team. The app allows for real-time updates, task tracking, and ensures efficient project management.",
     technologies: ["React", "Node.js"],
-    github: "https://github.com/harshil8901/Task-Assignment-website-.git",
+    github: "https://github.com/harshil8901/task-assignment.git",
     images: [
       taskAssignmentImg1,
       taskAssignmentImg2,
